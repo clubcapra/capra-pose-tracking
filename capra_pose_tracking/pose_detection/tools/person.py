@@ -1,4 +1,5 @@
 from time import time
+from rclpy.logging import get_logger
 
 class Person():
     def __init__(self, id):
@@ -6,6 +7,9 @@ class Person():
         self.start_time = None
         self.focus = False
         self.id = id
+        
+    def get_logger(self):
+        return get_logger(f"capra_pose_tracking_person_{self.id}")
 
     def add_pose(self, pose_id):
         # If person already has an associated pose
@@ -15,6 +19,8 @@ class Person():
                 # We cancel the tracking and reset the time
                 self.start_time = None
                 self.pose = 0
+                self.get_logger().info(f"Pose changed to {pose_id}")
+                
             # If the new pose is the same as pose from previous frame
             else:
                 # Calculate how long the pose has been being detected for
@@ -24,9 +30,11 @@ class Person():
                     if pose_id not in [0, 1]:
                         # We set the focus on the person
                         self.focus = True
+                        self.get_logger().info(f"Focussed")
                         # And return the ID for main()
                     else:
                         self.focus = False
+                        self.get_logger().info(f"Not focussed")
                         
                     return self.id
         # If person does not have an associated pose
@@ -35,6 +43,7 @@ class Person():
             self.start_time = time()
             # Remember the pose
             self.pose = pose_id
+            self.get_logger().info(f"Pose changed to {pose_id}")
 
         return -1
 

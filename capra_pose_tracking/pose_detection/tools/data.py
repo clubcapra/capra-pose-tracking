@@ -1,6 +1,9 @@
-from typing import Collection
+from __future__ import annotations
+from typing import Collection, Generic, Iterable, TypeVar, Union
+from more_itertools import first
 import numpy as np
 from ..constants import KEYPOINT_OF_INTEREST
+from zed_interfaces.msg import Object, Keypoint2Df, Keypoint3D
 
 def convertToOneHot(y, nb_outputs, pose_dict):
   oh_y = np.zeros((y.shape[0], nb_outputs))
@@ -71,7 +74,12 @@ def getKeypointsOfInterestFromBodyData(bodyData: Collection[float]):
     data.append(keypoints)
 
     return np.array(data)
-    
-  
 
+T = TypeVar('T', int, bool, list, float)
 
+def to_np(obj: Union[Iterable[T], np.ndarray[T]], dtype:np.dtype) -> np.ndarray[T]:
+  if (isinstance(obj, np.ndarray)):
+    return obj
+  if isinstance(first(obj), (Keypoint2Df, Keypoint3D)):
+    return np.array(list([o.kp for o in obj]), dtype)
+  return np.array(obj, dtype)
