@@ -1,0 +1,30 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/media/SSD/stable/rove/install/zed_components/include/**",
+        "/media/SSD/stable/rove/install/zed_interfaces/include/**",
+        "/media/SSD/stable/rove/install/vectornav/include/**",
+        "/media/SSD/stable/rove/install/vectornav_msgs/include/**",
+        "/media/SSD/stable/rove/install/ovis_controller/include/**",
+        "/media/SSD/stable/rove/install/ovis_control/include/**",
+        "/media/SSD/stable/rove/install/odrive_can/include/**",
+        "/opt/ros/humble/include/**",
+        "/media/SSD/stable/rove/src/ovis_ros2/src/ovis_control/include/**",
+        "/media/SSD/stable/rove/src/ovis_ros2/src/ovis_controller/include/**",
+        "/media/SSD/stable/rove/src/ros_odrive/odrive_node/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-arm64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

@@ -1,0 +1,6 @@
+{
+  "python.analysis.extraPaths": [
+    "./math"
+  ],
+  "ros.distro": "humble"
+}
